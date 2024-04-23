@@ -6,27 +6,27 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'main', url: 'https://github.com/Nipunikumudika/4067-Mallikarachchi'
+                    git branch: 'main', url: 'https://github.com/eg20204254/4254-Virajani'
                 }
             }
         }
         stage('Build Docker Image') {
             steps {  
-                bat 'docker build -t nipunikumudika/rubik-cube:%BUILD_NUMBER% .'
+                bat 'docker build -t eg20204254/rubik-cube:%BUILD_NUMBER% .'
             }
         }
 
         stage('Login to Docker Hub') {
     steps {
-        withCredentials([string(credentialsId: 'Nipuni-DockerhubPassword2', variable: 'PW')]) {
-            bat "docker login -u nipunikumudika -p ${PW}"
+        withCredentials([string(credentialsId: 'Yasodha-DockerhubPassword2', variable: 'PW')]) {
+            bat "docker login -u eg20204254 -p ${PW}"
         }
     }
 }
 
         stage('Push Image') {
             steps {
-                bat 'docker push nipunikumudika/rubik-cube:%BUILD_NUMBER%'
+                bat 'docker push eg20204254/rubik-cube:%BUILD_NUMBER%'
             }
         }
     }
