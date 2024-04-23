@@ -1,0 +1,42 @@
+
+.placedOrders {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: green;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .title {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .boxContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #fff;
+  }
+  
+  .box span {
+    font-weight: bold;
+  }
+  
+  .empty {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+  }
