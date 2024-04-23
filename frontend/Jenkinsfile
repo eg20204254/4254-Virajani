@@ -1,0 +1,38 @@
+pipeline {
+    agent any 
+   
+    
+    stages { 
+        stage('SCM Checkout') {
+            steps {
+                retry(3) {
+                    git branch: 'main', url: 'https://github.com/eg20204254/4254-Virajani'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {  
+                bat 'docker build -t yasodhavirajani/grocery-store:%BUILD_NUMBER% .'
+            }
+        }
+
+        stage('Login to Docker Hub') {
+    steps {
+        withCredentials([string(credentialsId: 'Yasodha-DockerhubPassword', variable: 'PW')]) {
+            bat "docker login -u yasodhavirajani -p ${PW}"
+        }
+    }
+}
+
+        stage('Push Image') {
+            steps {
+                bat 'docker push yasodhavirajani/grocery-store:%BUILD_NUMBER%'
+            }
+        }
+    }
+    post {
+        always {
+            bat 'docker logout'
+        }
+    }
+}
